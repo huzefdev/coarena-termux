@@ -7,16 +7,15 @@ if not sys.stdin.isatty() and os.path.exists("/dev/tty"):
 BASE_URL = os.environ.get("COARENA_BASE_URL", "https:" + "//coarena.ai/api/v1")
 API_KEY = os.environ.get("COARENA_API_KEY")
 
-C = "\033[1;36m"
-G = "\033[1;32m"
-Y = "\033[1;33m"
-R = "\033[1;31m"
-D = "\033[90m"
-W = "\033[1;37m"
+B = "\033[38;5;240m"   # Muted Slate Border
+A = "\033[38;5;179m"   # Warm Metallic Gold
+W = "\033[1;37m"       # Crisp White
+D = "\033[38;5;244m"   # Subtle Gray
+E = "\033[38;5;203m"   # Soft Coral Error
 X = "\033[0m"
 
 if not API_KEY:
-    print(f"{R}[ERROR] COARENA_API_KEY missing. Run the one-line installer or check ~/.bashrc{X}")
+    print(f"{E}[error] COARENA_API_KEY missing. Run installer or check ~/.bashrc{X}")
     sys.exit(1)
 
 def req(path, payload=None, method=None):
@@ -32,9 +31,9 @@ def req(path, payload=None, method=None):
         with urllib.request.urlopen(r, timeout=90) as res:
             return json.loads(res.read().decode("utf-8"))
     except urllib.error.HTTPError as e:
-        print(f"\n{R}[HTTP {e.code}]{X} {e.read().decode('utf-8')}")
+        print(f"\n{E}[http {e.code}]{X} {e.read().decode('utf-8')}")
     except Exception as e:
-        print(f"\n{R}[NET ERROR]{X} {e}")
+        print(f"\n{E}[network error]{X} {e}")
     return None
 
 def get_live_models():
@@ -45,14 +44,15 @@ def get_live_models():
 
 def banner(model, total_models, ctx_loaded):
     os.system("clear")
-    print(f"{C}╔══════════════════════════════════════════════════╗{X}")
-    print(f"{C}║{X}   {W}FUSON // COARENA AI GATEWAY{X} {D}(TERMUX CLI){X}      {C}│{X}" if False else f"{C}║{X}   {W}FUSON // COARENA AI GATEWAY{X} {D}(TERMUX CLI){X}      {C}║{X}")
-    print(f"{C}╠══════════════════════════════════════════════════╣{X}")
-    print(f"{C}║{X}  Active Model : {G}{model:<31}{X}  {C}║{X}")
-    print(f"{C}║{X}  Live Models  : {W}{total_models} online{X}                        {C}║{X}")
-    print(f"{C}║{X}  Context Sync : {Y}{'HANDOVER.md LOADED' if ctx_loaded else 'Clean Session':<31}{X}  {C}║{X}")
-    print(f"{C}╚══════════════════════════════════════════════════╝{X}")
-    print(f"{D}Commands: /models | /limits | /upgrade | /handover | /clear | /exit{X}\n")
+    mem = "HANDOVER.md active" if ctx_loaded else "clean session"
+    print(f"{B}╭────────────────────────────────────────────╮{X}")
+    print(f"{B}│{X} {A}FUSON{X} {W}coarena gateway{X}        {D}by huzef dev{X} {B}│{X}")
+    print(f"{B}├────────────────────────────────────────────┤{X}")
+    print(f"{B}│{X} {D}model  :{X} {W}{model:<33}{X} {B}│{X}")
+    print(f"{B}│{X} {D}nodes  :{X} {A}{total_models} online{X}                         {B}│{X}")
+    print(f"{B}│{X} {D}memory :{X} {W}{mem:<33}{X} {B}│{X}")
+    print(f"{B}╰────────────────────────────────────────────╯{X}")
+    print(f"{D}/models  /limits  /upgrade  /handover  /clear  /exit{X}\n")
 
 def main():
     models = get_live_models()
@@ -69,9 +69,9 @@ def main():
 
     while True:
         try:
-            prompt = input(f"{C}[{model}]{X} {W}❯{X} ").strip()
+            prompt = input(f"{D}[{X}{A}{model}{X}{D}]{X} {A}❯{X} ").strip()
         except (EOFError, KeyboardInterrupt):
-            print(f"\n{D}Session terminated.{X}")
+            print(f"\n{D}session closed.{X}")
             break
 
         if not prompt:
@@ -80,56 +80,56 @@ def main():
             break
         if prompt == "/clear":
             msgs = []
-            print(f"{Y}[MEM] Conversation memory cleared.{X}\n")
+            print(f"{D}[memory cleared]{X}\n")
             continue
         if prompt == "/models":
             models = get_live_models()
-            print(f"\n{C}┌── LIVE ACTIVE MODELS ──────────────────────────┐{X}")
+            print(f"\n{B}╭─ active models ────────────────────────────╮{X}")
             for i, m in enumerate(models, 1):
-                mark = f"{G}●{X}" if m == model else f"{D}○{X}"
-                print(f"{C}│{X} {mark} {W}{i:2d}.{X} {m:<40} {C}│{X}")
-            print(f"{C}└────────────────────────────────────────────────┘{X}")
-            s = input(f"{Y}Select model #:{X} ").strip()
+                mark = f"{A}●{X}" if m == model else f"{D}○{X}"
+                print(f"{B}│{X} {mark} {D}{i:2d}.{X} {W}{m:<36}{X} {B}│{X}")
+            print(f"{B}╰────────────────────────────────────────────╯{X}")
+            s = input(f"{D}select #:{X} ").strip()
             if s.isdigit() and 1 <= int(s) <= len(models):
                 model = models[int(s) - 1]
-                print(f"{G}[✓] Switched to {model}{X}\n")
+                print(f"{A}✓{X} {D}switched to{X} {W}{model}{X}\n")
             continue
         if prompt.startswith("/model "):
             model = prompt.split(" ", 1)[1].strip()
-            print(f"{G}[✓] Switched to {model}{X}\n")
+            print(f"{A}✓{X} {D}switched to{X} {W}{model}{X}\n")
             continue
         if prompt == "/limits":
             out = req("/limits")
             if out and "data" in out:
                 d = out["data"]
                 t = d.get("today", {})
-                print(f"\n{C}┌── DAILY QUOTA TELEMETRY ───────────────────────┐{X}")
-                print(f"{C}│{X} Daily Allowance : {G}${d.get('usd_per_day', 5)}/day{X}                       {C}│{X}")
-                print(f"{C}│{X} Used Today      : {Y}${t.get('used_usd', 0):.4f}{X}                      {C}│{X}")
-                print(f"{C}│{X} Remaining       : {G}${t.get('left_usd', 5):.4f}{X}                      {C}│{X}")
-                print(f"{C}└────────────────────────────────────────────────┘{X}\n")
+                print(f"\n{B}╭─ daily quota ──────────────────────────────╮{X}")
+                print(f"{B}│{X} {D}allowance :{X} {W}${d.get('usd_per_day', 5)}/day{X}                        {B}│{X}")
+                print(f"{B}│{X} {D}used      :{X} {A}${t.get('used_usd', 0):.4f}{X}                       {B}│{X}")
+                print(f"{B}│{X} {D}remaining :{X} {W}${t.get('left_usd', 5):.4f}{X}                       {B}│{X}")
+                print(f"{B}╰────────────────────────────────────────────╯{X}\n")
             continue
         if prompt == "/upgrade":
             out = req("/limits/requests", {"usd_per_day": 10}, method="POST")
             if out:
-                msg = out.get("data", {}).get("message", "Upgrade request sent.")
-                print(f"{G}[✓] {msg}{X}\n")
+                msg = out.get("data", {}).get("message", "upgrade request sent.")
+                print(f"{A}✓{X} {W}{msg}{X}\n")
             continue
         if prompt == "/handover":
             if not msgs:
-                print(f"{Y}[!] No conversation history to export.{X}\n")
+                print(f"{D}[nothing to export]{X}\n")
                 continue
-            print(f"{D}Synthesizing HANDOVER.md...{X}")
+            print(f"{D}writing HANDOVER.md...{X}")
             p = "Generate a concise technical HANDOVER.md summarizing Objective, Completed State, Key Code/Decisions, and Next Steps."
             out = req("/chat/completions", {"model": model, "messages": msgs + [{"role": "user", "content": p}]})
             if out and "choices" in out:
                 with open("HANDOVER.md", "w", encoding="utf-8") as f:
                     f.write(out["choices"][0]["message"]["content"])
-                print(f"{G}[✓] Exported session state to HANDOVER.md{X}\n")
+                print(f"{A}✓{X} {D}saved to{X} {W}HANDOVER.md{X}\n")
             continue
 
         msgs.append({"role": "user", "content": prompt})
-        print(f"{D}Processing...{X}", end="\r")
+        print(f"{D}thinking...{X}", end="\r")
         out = req("/chat/completions", {"model": model, "messages": msgs})
         sys.stdout.write("\033[K")
         if out and "choices" in out:
