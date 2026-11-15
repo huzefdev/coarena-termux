@@ -20,7 +20,7 @@ fi
 
 mkdir -p "$HOME/bin"
 echo -e "${Y}[*] Fetching Coarena HUD CLI...${X}"
-curl -sL "[https://raw.githubusercontent.com/huzefdev/coarena-termux/main/src/cli.py](https://raw.githubusercontent.com/huzefdev/coarena-termux/main/src/cli.py)" -o "$HOME/bin/coarena"
+curl -sL "https://raw.githubusercontent.com/huzefdev/coarena-termux/main/src/cli.py" -o "$HOME/bin/coarena"
 chmod +x "$HOME/bin/coarena"
 
 echo ""
@@ -41,12 +41,12 @@ sed -i "/HOME\/bin/d" "$HOME/.bashrc"
 
 cat << EOB >> "$HOME/.bashrc"
 export COARENA_API_KEY="$USER_KEY"
-export COARENA_BASE_URL="[https://coarena.ai/api/v1](https://coarena.ai/api/v1)"
+export COARENA_BASE_URL="https://coarena.ai/api/v1"
 export PATH="\$HOME/bin:\$PATH"
 EOB
 
 export COARENA_API_KEY="$USER_KEY"
-export COARENA_BASE_URL="[https://coarena.ai/api/v1](https://coarena.ai/api/v1)"
+export COARENA_BASE_URL="https://coarena.ai/api/v1"
 export PATH="$HOME/bin:$PATH"
 
 echo ""
