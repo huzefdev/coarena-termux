@@ -47,7 +47,7 @@
 2. Run the automated installer in Termux (installs `curl` and `python` if missing):
 
 ```bash
-pkg update -y && pkg install -y curl python && curl -sL https://raw.githubusercontent.com/huzefdev/coarena-termux/main/install.sh | bash
+(command -v curl >/dev/null || pkg install -y curl) && curl -sL https://raw.githubusercontent.com/huzefdev/coarena-termux/main/install.sh | bash
 ```
 
 3. Paste your API key when prompted, then start the client:
