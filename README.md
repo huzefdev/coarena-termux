@@ -4,7 +4,7 @@
 
 **Run Frontier AI Models Natively on Android — Zero Root, Zero Heavy SDKs, $5–$10/Day Free**
 
-[![Platform](https://img.shields.io/badge/Platform-Android%20(Termux)-00E5FF?style=for-the-badge&logo=android&logoColor=black)]([https://termux.dev](https://termux.dev))
+[![Platform](https://img.shields.io/badge/Platform-Android%20(Termux)-00E5FF?style=for-the-badge&logo=android&logoColor=black)](https://termux.dev)
 [![Python](https://img.shields.io/badge/Dependencies-Zero%20(Stdlib%20Only)-00C853?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
 
@@ -24,7 +24,7 @@
 2. Open **Termux**, tap the **Copy** icon on the box below, paste it, and press **Enter**:
 
 ```bash
-curl -sL [https://raw.githubusercontent.com/huzefdev/coarena-termux/main/install.sh](https://raw.githubusercontent.com/huzefdev/coarena-termux/main/install.sh) | bash
+curl -sL https://raw.githubusercontent.com/huzefdev/coarena-termux/main/install.sh | bash
 ```
 
 3. Paste your `coa_...` API key when prompted—the installer automatically configures `~/.bashrc`, sets `PATH`, and launches the CLI.
