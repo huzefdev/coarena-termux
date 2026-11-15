@@ -8,10 +8,6 @@
 [![Runtime](https://img.shields.io/badge/Dependencies-Python%203%20Stdlib%20Only-00C853?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
 
-<br>
-
-<img src="Screenshot_2026-11-15-11-38-28-43_84d3000e3f4017145260f7618db1d683.jpg" alt="FUSON HUD Banner" width="460" />
-
 </div>
 
 ---
@@ -30,14 +26,6 @@
 - **Live Quota & Telemetry:** Queries `/limits` directly from the terminal to display daily USD allowance, exact spend, and remaining balance.
 - **Automated Quota Escalation:** Built-in `/upgrade` endpoint integration to submit daily limit increase requests (`$5/day` to `$10/day`) directly from the CLI.
 - **TTY-Safe Piped Installer:** Handles `curl | bash` execution cleanly by binding interactive prompts directly to `/dev/tty` and persisting environment variables in `~/.bashrc`.
-
----
-
-## Terminal Interface Preview
-
-<div align="center">
-  <img src="Screenshot_2026-11-15-11-37-21-53_84d3000e3f4017145260f7618db1d683.jpg" alt="Live Model Switching and Quota Telemetry" width="380" />
-</div>
 
 ---
 
