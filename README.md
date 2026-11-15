@@ -1,12 +1,23 @@
 <div align="center">
 
-# FUSON // Coarena AI Termux CLI
+<a href="https://github.com/huzefdev/coarena-termux">
+  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=24&duration=2800&pause=900&color=D4AF37&center=true&vCenter=true&width=520&height=45&lines=FUSON+%2F%2F+COARENA+TERMUX+CLI;ZERO-DEPENDENCY+ANDROID+AI+ENGINE;GPT-6+%7C+GEMINI+4+%7C+DEEPSEEK+V4+ON+MOBILE" alt="Typing Banner" />
+</a>
 
-**Zero-Dependency Terminal Client for Coarena AI Gateway on Android**
+<br>
 
-[![Platform](https://img.shields.io/badge/Platform-Android%20(Termux)-00E5FF?style=for-the-badge&logo=android&logoColor=black)](https://termux.dev)
-[![Runtime](https://img.shields.io/badge/Dependencies-Python%203%20Stdlib%20Only-00C853?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
-[![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
+[![Platform](https://img.shields.io/badge/Platform-Android%20(Termux)-1C1C1E?style=for-the-badge&logo=android&logoColor=D4AF37)](https://termux.dev)
+[![Runtime](https://img.shields.io/badge/Runtime-Python%203%20Stdlib-1C1C1E?style=for-the-badge&logo=python&logoColor=D4AF37)](https://python.org)
+[![Author](https://img.shields.io/badge/Engineered%20By-Huzef%20Dev-D4AF37?style=for-the-badge)](https://github.com/huzefdev)
+
+<br><br>
+
+<table>
+  <tr>
+    <td align="center"><b>HUD Gateway &amp; Memory Sync</b><br><br><img src="Screenshot_2026-11-15-12-03-36-60_84d3000e3f4017145260f7618db1d683.jpg" width="320" /></td>
+    <td align="center"><b>Live Terminal Preview</b><br><br><img src="IMG_20261115_120615.jpg" width="320" /></td>
+  </tr>
+</table>
 
 </div>
 
@@ -32,7 +43,7 @@
 ## Installation (Fresh Termux)
 
 1. Generate an API key (`coa_...`) at **[coarena.ai/account/api/keys](https://coarena.ai/account/api/keys)**.
-2. Run the automated installer in Termux (installs `curl` and `python` if missing):
+2. Run the automated installer in Termux:
 
 ```bash
 (command -v curl >/dev/null || pkg install -y curl) && curl -sL https://raw.githubusercontent.com/huzefdev/coarena-termux/main/install.sh | bash
@@ -72,7 +83,7 @@ coarena gemini-4-carbon
 coarena-termux/
 ├── install.sh              # Interactive Termux setup and environment binder
 ├── src/
-│   └── cli.py              # Core Python HUD client and API handler
+│   └── cli.py              # Matte Slate & Gold Python HUD client
 ├── scripts/
 │   └── uninstall.sh        # Clean binary and bashrc removal script
 ├── docs/
