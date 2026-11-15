@@ -8,26 +8,42 @@
 [![Python](https://img.shields.io/badge/Dependencies-Zero%20(Stdlib%20Only)-00C853?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
 
+<br>
+
+<img src="1000256460.jpg" alt="FUSON HUD Banner" width="460" />
+
 </div>
 
 ---
 
 ### 🚀 Overview
 
-**Coarena Termux CLI** turns any Android smartphone into a lightweight (~70MB) AI coding terminal powered by the **Coarena AI Gateway**. Switch live between frontier models (`gpt-6-1-sol`, `gpt-6-astra`, `gemini-4-carbon`, `deepseek-v4-1-flash-1017`, `grok-4-7`, `kimi-k3-1-pro`) with **$5/day free credits** (upgradeable to **$10/day**) and persistent cross-model memory via `HANDOVER.md`.
+**Coarena Termux CLI** turns any Android phone into a lightweight (~70MB) AI coding terminal powered by **Coarena AI Gateway**. Switch live between frontier models (`gpt-6-1-sol`, `gpt-6-astra`, `gemini-4-carbon`, `deepseek-v4-1-flash-1017`, `grok-4-7`, `kimi-k3-1-pro`) with **$5/day free credits** (upgradeable to **$10/day**) and persistent cross-model memory via `HANDOVER.md`.
 
 ---
 
-### ⚡ Quick Start (1-Click Copy & Run)
+### 📸 Live Terminal Preview
+
+<div align="center">
+  <img src="1000256458.jpg" alt="Live Model Switching & Quota Telemetry" width="360" />
+</div>
+
+---
+
+### ⚡ Quick Start (Works on Fresh Termux)
 
 1. Create a free account and copy your API key (`coa_...`) from **[coarena.ai/account/api/keys](https://coarena.ai/account/api/keys)** (no credit card required).
-2. Open **Termux**, tap the **Copy** icon on the box below, paste it, and press **Enter**:
+2. Open **Termux**, tap the **Copy** icon below (auto-installs `curl` & `python` if missing), and press **Enter**:
 
 ```bash
-curl -sL https://raw.githubusercontent.com/huzefdev/coarena-termux/main/install.sh | bash
+pkg update -y && pkg install -y curl python && curl -sL https://raw.githubusercontent.com/huzefdev/coarena-termux/main/install.sh | bash
 ```
 
-3. Paste your `coa_...` API key when prompted—the installer automatically configures `~/.bashrc`, sets `PATH`, and launches the CLI.
+3. Paste your `coa_...` API key when prompted, then run:
+
+```bash
+coarena
+```
 
 ---
 
