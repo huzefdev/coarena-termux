@@ -14,8 +14,8 @@
 
 <table>
   <tr>
-    <td align="center"><b>HUD Gateway &amp; Memory Sync</b><br><br><img src="Screenshot_2026-11-15-12-03-36-60_84d3000e3f4017145260f7618db1d683.jpg" width="320" /></td>
-    <td align="center"><b>Live Terminal Preview</b><br><br><img src="IMG_20261115_120615.jpg" width="320" /></td>
+    <td align="center"><b>HUD Gateway &amp; Memory Sync</b><br><br><img src="assets/Screenshot_2026-11-15-12-03-36-60_84d3000e3f4017145260f7618db1d683.jpg" width="320" /></td>
+    <td align="center"><b>Live Terminal Preview</b><br><br><img src="assets/IMG_20261115_120615.jpg" width="320" /></td>
   </tr>
 </table>
 
