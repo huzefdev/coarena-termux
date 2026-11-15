@@ -20,8 +20,8 @@ fi
 
 mkdir -p "$HOME/bin"
 echo -e "${Y}[*] Fetching Coarena HUD CLI...${X}"
-curl -sL "https://raw.githubusercontent.com/huzefdev/coarena-termux/main/src/cli.py" -o "$HOME/bin/coarena"
-chmod +x "$HOME/bin/coarena"
+curl -sL "https://raw.githubusercontent.com/huzefdev/coarena-termux/main/src/cli.py" -o echo -e "\n\033[1;32m[✓] Ready! Run: coarena\033[0m"
+chmod +x echo -e "\n\033[1;32m[✓] Ready! Run: coarena\033[0m"
 
 echo ""
 echo -e "${C}┌── API KEY CONFIGURATION ─────────────────────────┐${X}"
@@ -52,4 +52,4 @@ export PATH="$HOME/bin:$PATH"
 echo ""
 echo -e "${G}[✓] Installation complete! Launching Coarena HUD...${X}"
 sleep 1
-exec "$HOME/bin/coarena" </dev/tty
+echo -e "\n\033[1;32m[✓] Ready! Run: coarena\033[0m"
