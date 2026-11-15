@@ -1,11 +1,11 @@
 <div align="center">
 
-# ⚡ FUSON // Coarena AI Termux CLI
+# FUSON // Coarena AI Termux CLI
 
-**Run Frontier AI Models Natively on Android — Zero Root, Zero Heavy SDKs, $5–$10/Day Free**
+**Zero-Dependency Terminal Client for Coarena AI Gateway on Android**
 
 [![Platform](https://img.shields.io/badge/Platform-Android%20(Termux)-00E5FF?style=for-the-badge&logo=android&logoColor=black)](https://termux.dev)
-[![Python](https://img.shields.io/badge/Dependencies-Zero%20(Stdlib%20Only)-00C853?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![Runtime](https://img.shields.io/badge/Dependencies-Python%203%20Stdlib%20Only-00C853?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
 
 <br>
@@ -16,74 +16,86 @@
 
 ---
 
-### 🚀 Overview
+## Overview
 
-**Coarena Termux CLI** turns any Android phone into a lightweight (~70MB) AI coding terminal powered by **Coarena AI Gateway**. Switch live between frontier models (`gpt-6-1-sol`, `gpt-6-astra`, `gemini-4-carbon`, `deepseek-v4-1-flash-1017`, `grok-4-7`, `kimi-k3-1-pro`) with **$5/day free credits** (upgradeable to **$10/day**) and persistent cross-model memory via `HANDOVER.md`.
+**Coarena Termux CLI** is a lightweight (~70MB total footprint) command-line interface engineered for Android Termux environments. Built strictly on Python standard libraries (`urllib.request`, `json`), it connects directly to the Coarena AI Gateway without external SDK bloat, Node.js runtimes, or root access.
 
 ---
 
-### 📸 Live Terminal Preview
+## Core Engineering Features
+
+- **Zero-Dependency Runtime:** Eliminates `openai`, `httpx`, and heavy dependency trees. Runs natively on low-RAM Android devices with instant startup.
+- **Persistent Cross-Model Memory (`HANDOVER.md`):** Exports active session state, architectural decisions, and pending tasks into a local `HANDOVER.md` file. Switching models automatically injects this context into the new session system prompt.
+- **Dynamic Model Hot-Swapping:** Queries `/models` in real time and switches between active frontier models (`gpt-6-1-sol`, `gpt-6-astra`, `gemini-4-carbon`, `deepseek-v4-1-flash-1017`, `grok-4-7`, `kimi-k3-1-pro`) mid-session without restarting.
+- **Live Quota & Telemetry:** Queries `/limits` directly from the terminal to display daily USD allowance, exact spend, and remaining balance.
+- **Automated Quota Escalation:** Built-in `/upgrade` endpoint integration to submit daily limit increase requests (`$5/day` to `$10/day`) directly from the CLI.
+- **TTY-Safe Piped Installer:** Handles `curl | bash` execution cleanly by binding interactive prompts directly to `/dev/tty` and persisting environment variables in `~/.bashrc`.
+
+---
+
+## Terminal Interface Preview
 
 <div align="center">
-  <img src="Screenshot_2026-11-15-11-37-21-53_84d3000e3f4017145260f7618db1d683.jpg" alt="Live Model Switching & Quota Telemetry" width="360" />
+  <img src="Screenshot_2026-11-15-11-37-21-53_84d3000e3f4017145260f7618db1d683.jpg" alt="Live Model Switching and Quota Telemetry" width="380" />
 </div>
 
 ---
 
-### ⚡ Quick Start (Works on Fresh Termux)
+## Installation (Fresh Termux)
 
-1. Create a free account and copy your API key (`coa_...`) from **[coarena.ai/account/api/keys](https://coarena.ai/account/api/keys)** (no credit card required).
-2. Open **Termux**, tap the **Copy** icon below (auto-installs `curl` & `python` if missing), and press **Enter**:
+1. Generate an API key (`coa_...`) at **[coarena.ai/account/api/keys](https://coarena.ai/account/api/keys)**.
+2. Run the automated installer in Termux (installs `curl` and `python` if missing):
 
 ```bash
 pkg update -y && pkg install -y curl python && curl -sL https://raw.githubusercontent.com/huzefdev/coarena-termux/main/install.sh | bash
 ```
 
-3. Paste your `coa_...` API key when prompted, then run:
+3. Paste your API key when prompted, then start the client:
 
 ```bash
 coarena
 ```
 
----
+To launch directly with a specific model:
 
-### 🛠️ Interactive CLI Commands
-
-| Command | Description |
-| :--- | :--- |
-| `/models` | Fetch and switch between live active models on Coarena |
-| `/model <id>` | Switch directly to a specific model (e.g., `/model gemini-4-carbon`) |
-| `/limits` | View daily `$5/day` allowance, used balance, and remaining quota |
-| `/upgrade` | Submit an API request to double your daily limit (`$5` → `$10/day`) |
-| `/handover` | Export current session state into `HANDOVER.md` for persistent memory |
-| `/clear` | Wipe active conversation history to save context tokens |
-| `/exit` | Exit the CLI cleanly |
-
----
-
-### 📂 Repository Structure
-
-```text
-coarena-termux/
-├── install.sh              # One-line interactive Termux installer
-├── src/
-│   └── cli.py              # Zero-dependency Neon-Cyan HUD Python CLI
-├── scripts/
-│   └── uninstall.sh        # Clean removal utility
-├── docs/
-│   └── WORKFLOW.md         # Architecture & HANDOVER.md memory guide
-├── LICENSE                 # MIT License
-└── README.md               # Documentation
+```bash
+coarena gemini-4-carbon
 ```
 
 ---
 
-### 🔒 Security Notice
+## CLI Command Reference
 
-Third-party API gateways route inference traffic through external servers. **Never send passwords, private keys, or sensitive personal credentials** inside prompts.
+| Command | Function |
+| :--- | :--- |
+| `/models` | Fetch live available models and switch active model by index |
+| `/model <id>` | Switch directly to a specified model ID |
+| `/limits` | Display daily USD allowance, current usage, and remaining credits |
+| `/upgrade` | Submit a daily quota increase request (`$5` to `$10/day`) |
+| `/handover` | Synthesize and write current session context to `HANDOVER.md` |
+| `/clear` | Reset active conversation history in memory |
+| `/exit` | Terminate the CLI session |
 
 ---
 
-<div align="center">
-Built by <b>Huzef Dev</b> • Engineered for Low-Resource Android Workflows
-</div>
+## Repository Structure
+
+```text
+coarena-termux/
+├── install.sh              # Interactive Termux setup and environment binder
+├── src/
+│   └── cli.py              # Core Python HUD client and API handler
+├── scripts/
+│   └── uninstall.sh        # Clean binary and bashrc removal script
+├── docs/
+│   └── WORKFLOW.md         # Architecture and HANDOVER.md specification
+├── LICENSE                 # MIT License
+└── README.md               # Technical documentation
+```
+
+---
+
+## Security & Data Handling
+
+- API credentials are stored locally in `$HOME/.bashrc` and transmitted exclusively via HTTPS `Authorization: Bearer` headers to `coarena.ai/api/v1`.
+- Do not transmit passwords, private keys, or sensitive personal records through third-party inference gateways.
