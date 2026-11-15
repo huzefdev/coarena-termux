@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 import os, sys, json, urllib.request, urllib.error
 
-BASE_URL = os.environ.get("COARENA_BASE_URL", "[https://coarena.ai/api/v1](https://coarena.ai/api/v1)")
+if not sys.stdin.isatty() and os.path.exists("/dev/tty"):
+    sys.stdin = open("/dev/tty", "r")
+
+BASE_URL = os.environ.get("COARENA_BASE_URL", "https:" + "//coarena.ai/api/v1")
 API_KEY = os.environ.get("COARENA_API_KEY")
 
 C = "\033[1;36m"
@@ -43,7 +46,7 @@ def get_live_models():
 def banner(model, total_models, ctx_loaded):
     os.system("clear")
     print(f"{C}╔══════════════════════════════════════════════════╗{X}")
-    print(f"{C}║{X}   {W}FUSON // COARENA AI GATEWAY{X} {D}(TERMUX CLI){X}      {C}║{X}")
+    print(f"{C}║{X}   {W}FUSON // COARENA AI GATEWAY{X} {D}(TERMUX CLI){X}      {C}│{X}" if False else f"{C}║{X}   {W}FUSON // COARENA AI GATEWAY{X} {D}(TERMUX CLI){X}      {C}║{X}")
     print(f"{C}╠══════════════════════════════════════════════════╣{X}")
     print(f"{C}║{X}  Active Model : {G}{model:<31}{X}  {C}║{X}")
     print(f"{C}║{X}  Live Models  : {W}{total_models} online{X}                        {C}║{X}")
