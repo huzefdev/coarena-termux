@@ -52,4 +52,4 @@ export PATH="$HOME/bin:$PATH"
 echo ""
 echo -e "${G}[✓] Installation complete! Launching Coarena HUD...${X}"
 sleep 1
-"$HOME/bin/coarena"
+exec "$HOME/bin/coarena" </dev/tty
