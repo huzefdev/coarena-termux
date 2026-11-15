@@ -40,22 +40,37 @@
 
 ---
 
-## Installation (Fresh Termux)
+## Required Termux Packages
 
-1. Generate an API key (`coa_...`) at **[coarena.ai/account/api/keys](https://coarena.ai/account/api/keys)**.
-2. Run the automated installer in Termux:
+Only **2 lightweight system packages** are needed (no `pip` packages or external SDKs):
+- `python` — Runs the zero-dependency CLI engine
+- `curl` — Fetches the installer and CLI script
+
+---
+
+## Step-by-Step Setup (Beginner Friendly)
+
+### Step 1: Get Your Free Coarena API Key
+1. Open **[coarena.ai](https://coarena.ai)** in your browser and **Sign Up using your Google Account** (no credit card required).
+2. Go to **[coarena.ai/account/api/keys](https://coarena.ai/account/api/keys)**.
+3. Click **Create New Key**, give it any name, and **copy your API key** (starts with `coa_...`).
+
+### Step 2: Install Packages & CLI in Termux
+Open **Termux**, paste the command below (it automatically installs `python` and `curl`, then launches the setup wizard), and press **Enter**:
 
 ```bash
-(command -v curl >/dev/null || pkg install -y curl) && curl -sL https://raw.githubusercontent.com/huzefdev/coarena-termux/main/install.sh | bash
+pkg install -y python curl && curl -sL https://raw.githubusercontent.com/huzefdev/coarena-termux/main/install.sh | bash
 ```
 
-3. Paste your API key when prompted, then start the client:
+### Step 3: Bind Key & Launch
+1. When the installer asks **`[coarena] ❯`**, paste your `coa_...` API key and press **Enter**.
+2. Once you see **`✓ setup complete`**, start the AI terminal anytime by typing:
 
 ```bash
 coarena
 ```
 
-To launch directly with a specific model:
+*(Optional)* Launch directly with a specific model:
 
 ```bash
 coarena gemini-4-carbon
