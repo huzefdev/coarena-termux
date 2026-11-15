@@ -10,7 +10,7 @@
 
 <br>
 
-<img src="1000256460.jpg" alt="FUSON HUD Banner" width="460" />
+<img src="Screenshot_2026-11-15-11-38-28-43_84d3000e3f4017145260f7618db1d683.jpg" alt="FUSON HUD Banner" width="460" />
 
 </div>
 
@@ -25,7 +25,7 @@
 ### 📸 Live Terminal Preview
 
 <div align="center">
-  <img src="1000256458.jpg" alt="Live Model Switching & Quota Telemetry" width="360" />
+  <img src="Screenshot_2026-11-15-11-37-21-53_84d3000e3f4017145260f7618db1d683.jpg" alt="Live Model Switching & Quota Telemetry" width="360" />
 </div>
 
 ---
