@@ -7,10 +7,10 @@ if not sys.stdin.isatty() and os.path.exists("/dev/tty"):
 BASE_URL = os.environ.get("COARENA_BASE_URL", "https:" + "//coarena.ai/api/v1")
 API_KEY = os.environ.get("COARENA_API_KEY")
 
-B = "\033[38;5;240m"   # Muted Slate Border
-A = "\033[38;5;179m"   # Warm Metallic Gold
-W = "\033[1;37m"       # Crisp White
-D = "\033[38;5;244m"   # Subtle Gray
+B = "\033[38;5;130m"   # Muted Slate Border
+A = "\033[1;38;5;214m"   # Warm Metallic Gold
+W = "\033[38;5;214m"       # Crisp White
+D = "\033[38;5;172m"   # Subtle Gray
 E = "\033[38;5;203m"   # Soft Coral Error
 X = "\033[0m"
 
